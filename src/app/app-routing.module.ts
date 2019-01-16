@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-// import { ContentLayoutComponent } from './layouts/content-layout/content-layout.component';
+import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { CONTENT_ROUTES } from './shared/index';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: 'auth',
     component: AuthLayoutComponent,
     loadChildren: './modules/auth/auth.module#AuthModule'
+  },
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: CONTENT_ROUTES
   },
   { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];
