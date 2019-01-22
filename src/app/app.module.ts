@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SharedModule } from './shared/index';
+
+import { CoreModule} from '@app/core';
+import { SharedModule } from '@app/shared';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +26,9 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
   imports: [
     BrowserModule,
     AuthModule,
-    AppRoutingModule,
-    SharedModule
+    CoreModule,
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
