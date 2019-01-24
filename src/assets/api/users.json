@@ -1,20 +1,23 @@
-[
-  {
-    "username": "Hemant",
-    "password": "12345",
-    "email": "hemant@gmail.com",
-    "pic": "na"
-  },
-  {
-    "username": "UP",
-    "password": "12345",
-    "email": "up@gmail.com",
-    "pic": "na"
-  },
-  {
-    "username": "Ankit",
-    "password": "12345",
-    "email": "ankit@gmail.com",
-    "pic": "na"
-  }
-]
+{
+  "error": "Server error",
+  "message": "Unknown error occured",
+  "data": [{
+      "username": "Hemant",
+      "password": "12345",
+      "email": "hemant@gmail.com",
+      "pic": "na"
+    },
+    {
+      "username": "UP",
+      "password": "12345",
+      "email": "up@gmail.com",
+      "pic": "na"
+    },
+    {
+      "username": "Ankit",
+      "password": "12345",
+      "email": "ankit@gmail.com",
+      "pic": "na"
+    }
+  ]
+}

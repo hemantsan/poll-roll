@@ -20,11 +20,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login();
-    this.authService.isAuthenticated()
-    .then(
-      (authenticated: Boolean) => {
-        console.log(authenticated);
+    const credentials = this.loginForm.value;
+    this.authService.login(credentials).subscribe(
+      res => {
+        console.log(res);
       }
     );
   }
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
   private initForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('hemant@gmail.com'),
-      password: new FormControl('')
+      password: new FormControl('12345')
     });
   }
 
