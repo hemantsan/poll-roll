@@ -1,5 +1,5 @@
 export class ServerResponse {
   data: any;
-  error: string[];
+  error: string;
   message: string;
 }

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     const credentials = this.loginForm.value;
     this.authService.login(credentials).subscribe(
       res => {
-        console.log(res);
+        console.log('Login page', res);
       }
     );
   }

@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   version: '1.0.0',
   serverUrl: 'src/assets/api/',
-  API_ENDPOINT: 'http://localhost:4200/assets/api/',
+  LOCAL_API_ENDPOINT: 'http://localhost:4200/assets/api/',
+  API_ENDPOINT: 'http://127.0.0.1:8000/api/',
   envName: 'DEV'
 };
 

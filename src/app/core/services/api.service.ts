@@ -36,9 +36,10 @@ export class ApiService {
       .pipe(catchError(this.formatErrors));
   }
 
-  public post(path: string, body: object = {}): Observable<any> {
+  public post(path: string, body: object = {}) {
     return this.httpClient
       .post(API_ENDPOINT + path, JSON.stringify(body), this.options)
+      .pipe(map(response => { return this.handleResponse(response); }))
       .pipe(catchError(this.formatErrors));
   }
 
@@ -53,13 +54,13 @@ export class ApiService {
   public handleResponse(response): ServerResponse {
     const data = response;
     if (data.error) {
-      const error: Errors = {error: data.error, message: data.message};
+      const error: any = {error: data.error, message: data.message};
       this.toast.showError(error);
       throw new Error(error);
       // return throwError(error);
     }
     else {
-      return data.data;
+      return data;
     }
   }
 }

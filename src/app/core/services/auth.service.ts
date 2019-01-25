@@ -30,31 +30,16 @@ export class AuthService {
 
   login(credentials: any): Observable<User> {
     let self = this;
-    return this.apiService.get('users.json').pipe(
-      map((user, index) => {
-        if (this._handleLogin(credentials, user[index])) {
+    return this.apiService.post('users/do-login', credentials).pipe(
+      map(response => {
+        if (this._handleLogin(credentials, response["data"])) {
           this.isLoggedIn = true;
           this.router.navigate(['dashboard']);
-          return user[index];
+          return response["data"];
         };
       }),
-      catchError((error) => { return error} )
+      catchError((error) => { return error } )
       );
-    // .pipe(
-    //   map((data: Response)) => {
-    //     data.filter(user => {
-    //       if (this._handleLogin(credentials, user)) {
-    //         self.users = user;
-    //         this.isLoggedIn = true;
-    //         return;
-    //       }
-    //     })
-    //   },
-    //   error => {
-    //     console.log('errors ', error);
-    //   }
-    // );
-    // this.router.navigate(['dashboard']);
   }
 
   _handleLogin(credentials: User, user) {
