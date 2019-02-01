@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   private initForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('hemant@gmail.com'),
-      password: new FormControl('12345')
+      password: new FormControl('123456')
     });
   }
 
