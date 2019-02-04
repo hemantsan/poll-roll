@@ -51,13 +51,26 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary" routerLink="/auth/register">
-              <strong>Register</strong>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Hello, {{userName}}
             </a>
-            <a class="button is-light" routerLink="/auth/login">
-              Login
-            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                Profile
+              </a>
+              <a class="navbar-item">
+                Change password
+              </a>
+              <a class="navbar-item" (click)="this.logout()">
+                Logout
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                About
+              </a>
+            </div>
           </div>
         </div>
       </div>

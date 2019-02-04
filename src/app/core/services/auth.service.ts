@@ -1,60 +1,53 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
-import { resolve, reject } from 'q';
-import { map, catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { ApiService } from './api.service';
-import { Observable, throwError } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { User } from "../models/user.model";
+import { resolve, reject } from "q";
+import { map, catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { ApiService } from "./api.service";
+import { Observable, throwError, of } from "rxjs";
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
   isLoggedIn = false;
 
-  constructor(
-    private router: Router,
-    private apiService: ApiService
-  ) { }
+  constructor(private router: Router, private apiService: ApiService) {}
 
-  isAuthenticated() {
-    const promise = new Promise(
-      (resolve, reject) => {
-        setTimeout(() => {
-          resolve(this.isLoggedIn);
-        }, 500);
-      }
+  isAuthenticated(): Observable<any> {
+    return of(localStorage.getItem('poll_token'));
+  }
+
+  isLoggedOut() {
+    return !this.isAuthenticated();
+  }
+
+  login(credentials: any): Observable<any> {
+    return this.apiService.post("users/do-login", credentials).pipe(
+      map((response: User) => this.setSession(response)),
+      catchError(error => {
+        return error;
+      })
     );
-    return promise;
-  }
-
-  login(credentials: any): Observable<User> {
-    let self = this;
-    return this.apiService.post('users/do-login', credentials).pipe(
-      map(response => {
-        if (this._handleLogin(credentials, response["data"])) {
-          this.isLoggedIn = true;
-          this.router.navigate(['dashboard']);
-          return response["data"];
-        };
-      }),
-      catchError((error) => { return error } )
-      );
-  }
-
-  _handleLogin(credentials: User, user) {
-    if (user.email != credentials.email) {
-      console.log('Username not found');
-      return false;
-    }
-    else if (user.email == credentials.email && user.password != credentials.password) {
-      console.log('Username and password did not match');
-      return false;
-    }
-    return true;
   }
 
   logout() {
-    this.isLoggedIn = false;
+    localStorage.removeItem("poll_token");
+    localStorage.removeItem("poll_user");
+    this.router.navigate(['./auth/login']);
+  }
+
+  private setSession(authResult) {
+    if (authResult && authResult.data.token) {
+      localStorage.setItem("poll_token", authResult.data.token);
+      localStorage.setItem("poll_user", JSON.stringify(authResult.data.user));
+      this.router.navigate(['./dashboard']);
+    }
+    // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+  }
+
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('poll_user'));
   }
 }

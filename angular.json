@@ -27,9 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/bulma/css/bulma.css",
-              "node_modules/ng-snotify/styles/material.css"
+              "node_modules/ng-snotify/styles/material.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },

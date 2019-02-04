@@ -21,11 +21,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const credentials = this.loginForm.value;
-    this.authService.login(credentials).subscribe(
-      res => {
-        console.log('Login page', res);
-      }
-    );
+    this.authService.login(credentials).subscribe();
   }
 
   get f () {

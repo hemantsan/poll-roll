@@ -19,9 +19,10 @@ export class ToastNotificationService implements OnInit {
       backdrop: -1,
       dockMax: 6,
       pauseHover: true,
-      maxHeight: 300,
-      titleMaxLength: 15,
+      maxHeight: 500,
+      titleMaxLength: 30,
       bodyMaxLength: 80,
+      style: 'material',
     };
   }
 
@@ -31,10 +32,7 @@ export class ToastNotificationService implements OnInit {
 
   showError(content: any) {
     this.snotifyService.error(content.message, content.error, {
-      timeout: 2000,
-      showProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true
+      ...this.toastConfig
     });
   }
 }
