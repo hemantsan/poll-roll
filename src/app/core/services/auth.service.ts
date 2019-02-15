@@ -32,6 +32,15 @@ export class AuthService {
     );
   }
 
+  register(credentials: any): Observable<any> {
+    return this.apiService.post("users/register", credentials).pipe(
+      map((response: User) => { this.router.navigate(['./auth/login']); return response} ),
+      catchError(error => {
+        return error;
+      })
+    );
+  }
+
   logout() {
     localStorage.removeItem("poll_token");
     localStorage.removeItem("poll_user");

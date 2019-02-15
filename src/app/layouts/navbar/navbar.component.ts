@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
   userName: string;
+  pic: string;
   userInfo: User;
 
   constructor(private authService: AuthService) { }
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
     this.userInfo = this.authService.getCurrentUser();
 
     this.userName = this.userInfo.username;
+    this.pic = this.userInfo.pic;
   }
 
   logout() {

@@ -12,15 +12,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '',
+    component: AppLayoutComponent,
+    canActivate: [AuthGuardService],
+    children: CONTENT_ROUTES
+  },
+  {
     path: 'auth',
     component: AuthLayoutComponent,
     loadChildren: './modules/auth/auth.module#AuthModule'
-  },
-  {
-    path: '',
-    canActivateChild: [AuthGuardService],
-    component: AppLayoutComponent,
-    children: CONTENT_ROUTES
   },
   { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];

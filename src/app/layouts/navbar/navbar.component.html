@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" routerLink="/dashboard/">
         <strong>PollRoll</strong>
       </a>
 
@@ -14,15 +14,15 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">
+        <a class="navbar-item" routerLink="/poll/create/">
           Create
         </a>
 
-        <a class="navbar-item">
+        <a class="navbar-item" routerLink="/poll/view/1">
           View
         </a>
 
-        <a class="navbar-item">
+        <a class="navbar-item" routerLink="/poll/result/">
           Results
         </a>
 
@@ -53,7 +53,7 @@
         <div class="navbar-item">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              Hello, {{userName}}
+              <img src="{{pic}}" alt="User Avatar" class="avatar"> {{userName}}
             </a>
 
             <div class="navbar-dropdown">

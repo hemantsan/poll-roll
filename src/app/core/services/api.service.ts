@@ -53,11 +53,11 @@ export class ApiService {
 
   public handleResponse(response): ServerResponse {
     const data = response;
+    this.toast.showToast(data);
+
     if (data.error) {
       const error: any = {error: data.error, message: data.message};
-      this.toast.showError(error);
       throw new Error(error);
-      // return throwError(error);
     }
     else {
       return data;

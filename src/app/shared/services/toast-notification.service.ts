@@ -30,8 +30,23 @@ export class ToastNotificationService implements OnInit {
 
   }
 
+  showToast(content: any) {
+    if (content.status === 'error') {
+      this.showError(content);
+    }
+    else if(content.status === 'success') {
+      this.showSuccess(content);
+    }
+  }
+
   showError(content: any) {
     this.snotifyService.error(content.message, content.error, {
+      ...this.toastConfig
+    });
+  }
+
+  showSuccess(content: any) {
+    this.snotifyService.success(content.message, 'Success', {
       ...this.toastConfig
     });
   }
