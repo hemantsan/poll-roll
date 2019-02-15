@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -21,7 +23,20 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const credentials = this.loginForm.value;
-    this.authService.login(credentials).subscribe();
+    this.authService.login(credentials).subscribe((result) => {
+      this.setSession(result);
+      this.router.navigate(['/dashboard/']);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  private setSession(authResult) {
+    if (authResult && authResult.access_token) {
+      localStorage.setItem("poll_token", authResult.access_token);
+      localStorage.setItem("poll_user", JSON.stringify(authResult.data.user));
+    }
+    // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   }
 
   get f () {

@@ -25,7 +25,7 @@ export class AuthService {
 
   login(credentials: any): Observable<any> {
     return this.apiService.post("users/do-login", credentials).pipe(
-      map((response: User) => this.setSession(response)),
+      map((response: User) => {return response}),
       catchError(error => {
         return error;
       })
@@ -34,7 +34,7 @@ export class AuthService {
 
   register(credentials: any): Observable<any> {
     return this.apiService.post("users/register", credentials).pipe(
-      map((response: User) => { this.router.navigate(['./auth/login']); return response} ),
+      map((response) => { return response}),
       catchError(error => {
         return error;
       })
@@ -45,15 +45,6 @@ export class AuthService {
     localStorage.removeItem("poll_token");
     localStorage.removeItem("poll_user");
     this.router.navigate(['./auth/login']);
-  }
-
-  private setSession(authResult) {
-    if (authResult && authResult.data.token) {
-      localStorage.setItem("poll_token", authResult.data.token);
-      localStorage.setItem("poll_user", JSON.stringify(authResult.data.user));
-      this.router.navigate(['./dashboard']);
-    }
-    // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   }
 
   getCurrentUser() {

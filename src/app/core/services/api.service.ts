@@ -30,7 +30,7 @@ export class ApiService {
     );
   }
 
-  public put(path: string, body: object = {}): Observable<any> {
+  public put(path: string, body: object = {}) {
     return this.httpClient.put(
       API_ENDPOINT + path, JSON.stringify(body), this.options)
       .pipe(catchError(this.formatErrors));
@@ -43,7 +43,7 @@ export class ApiService {
       .pipe(catchError(this.formatErrors));
   }
 
-  public delete(path: string): Observable<any> {
+  public delete(path: string) {
     return this.httpClient.delete(API_ENDPOINT + path).pipe(catchError(this.formatErrors));
   }
 

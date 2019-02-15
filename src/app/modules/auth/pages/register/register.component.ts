@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '@app/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
+    private router: Router,
     private authService: AuthService) { }
 
   ngOnInit() {
@@ -20,7 +22,11 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     const userData = this.registerForm.value;
-    this.authService.register(userData).subscribe();
+    this.authService.register(userData).subscribe((result) => {
+      this.router.navigate(['/auth/login/']);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   get f () {
