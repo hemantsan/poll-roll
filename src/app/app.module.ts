@@ -13,6 +13,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
     AuthModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

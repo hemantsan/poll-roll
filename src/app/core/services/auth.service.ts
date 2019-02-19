@@ -50,4 +50,8 @@ export class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('poll_user'));
   }
+
+  getToken() {
+    return localStorage.getItem('poll_token');
+  }
 }

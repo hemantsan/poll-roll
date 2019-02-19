@@ -1,3 +1,48 @@
-<p>
-  create works!
-</p>
+<div class="container poll-form">
+  <div class="columns">
+    <div class="column is-half">
+      <form (ngSubmit)="onSubmit()" [formGroup]="pollForm">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Question</label>
+              <div class="control">
+                <textarea class="input question" placeholder="demo question" autofocus="" formControlName="question"
+                  required></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-half" formArrayName="options" *ngFor="let item of pollForm.get('options').controls; let i = index;">
+            <div class="field">
+              <label class="label">Option {{i + 1}}</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Enter option" [formControlName]="i">
+              </div>
+            </div>
+          </div>
+          <div class="column is-full">
+            <div class="field is-grouped is-pulled-right">
+              <div class="control">
+                <button class="button is-text" (click)="onAddOption()" type="button">Add option</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field is-grouped is-pulled-right">
+              <div class="control">
+                <button class="button is-text" type="button">Cancel</button>
+              </div>
+              <div class="control">
+                <button class="button is-link" [disabled]="!pollForm.valid" type="submit">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
