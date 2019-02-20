@@ -32,13 +32,13 @@ export class CreateComponent implements OnInit {
     });
 
     this.optionsArray.map((data) => {
-      (<FormArray>this.pollForm.get('options')).push(new FormControl('option ' + data));
+      (this.pollForm.get('options') as FormArray).push(new FormControl('option ' + data));
     });
   }
 
   onAddOption() {
     const control = new FormControl(null);
-    (<FormArray>this.pollForm.get('options')).push(control);
+    (this.pollForm.get('options') as FormArray).push(control);
   }
 
   onSubmit() {

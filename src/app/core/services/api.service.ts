@@ -55,8 +55,8 @@ export class ApiService {
     const data = response;
     this.toast.showToast(data);
 
-    if (data.error) {
-      const error: any = {error: data.error, message: data.message};
+    if (data.status == "error") {
+      const error: any = {error: data.title, message: data.message};
       throw new Error(error);
     }
     else {

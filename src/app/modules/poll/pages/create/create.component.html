@@ -13,8 +13,8 @@
             </div>
           </div>
         </div>
-        <div class="columns is-multiline">
-          <div class="column is-half" formArrayName="options" *ngFor="let item of pollForm.get('options').controls; let i = index;">
+        <div class="columns is-multiline" formArrayName="options">
+          <div class="column is-half" *ngFor="let item of pollForm.get('options')['controls']; let i = index;">
             <div class="field">
               <label class="label">Option {{i + 1}}</label>
               <div class="control">
